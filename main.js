@@ -97,7 +97,7 @@ function replaceImg(show){
         return show.image.medium
     }
     else{
-        return 'https://www.ondarock.it/images/cover/handhabits-placeholder_1553080372.jpg'
+        return 'https://via.placeholder.com/210x295/ffffff/666666/?%20text=TV'
     }
 
 }
