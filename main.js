@@ -19,9 +19,9 @@ function renderFavBack() {
     else{
         favourites=[]
     }
-
 }
 renderFavBack()
+
 //RESET SEARCH RESULTS
 
 function resetSearch(){
@@ -35,7 +35,7 @@ reset.addEventListener('click', resetSearch);
 
 //BUSCAR LAS SERIES
 function searchSeries(ev){
-    series=[]; //hay que limpiar el array o se acumulan objetos a cada serach if you don't reload the page
+    series=[]; 
     ev.preventDefault();
     fetch(`http://api.tvmaze.com/search/shows?q=${title.value}`)
         .then(response => response.json())
@@ -51,35 +51,13 @@ function searchSeries(ev){
 }
 searchBtn.addEventListener('click', searchSeries);
 
-// series
-//             .showID     .showTitle     .showImageURL
-//       [0]     2938        Dark           pepino.png
-//       [1]     123         Dark tables    fksdj.jpg
-//       [2]     555         Dexter         dexter.jpg
-
-
-// eachSeries.showID === parseInt(resultsId)
-
-
-// favourites
-//                  .showID     .showTitle    .showImageURL
-//           [0]      2938         Dark         pepino.png
-
-
 
 //PINTAR LAS SERIES
 
 function renderingSeries(){  
-    box.innerHTML=''; // eso no funcionaría sin la limpieza del array, a cada search iria acumulando y seguiria pintado el acumulo de todos los searches.
+    box.innerHTML=''; 
     for (let i=0; i<series.length; i++){
-        // const favouriteIndex = favourites.findIndex( eachFav => eachFav.showID === series[i].showID);
-        // if( favouriteIndex >= 0 ) {
-        //     //Está en fav
-        // }
-        // else
-        // {
-        //     // No está en fav
-        // }
+        
         box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
                                 <h2>${series[i].showTitle}</h2>
                                 <div class="img_container">
@@ -97,7 +75,7 @@ function replaceImg(show){
         return show.image.medium
     }
     else{
-        return 'https://www.ondarock.it/images/cover/handhabits-placeholder_1553080372.jpg'
+        return 'https://via.placeholder.com/210x295/ffffff/666666/?%20text=TV'
     }
 
 }
@@ -129,7 +107,7 @@ function addFav(event){
             favourites.splice(selectedSeriesIndex, 1);
 
         }
-    // }
+    
     renderFavourite()
     localStorage.setItem('favourite-series', JSON.stringify(favourites))
 }
@@ -138,7 +116,7 @@ function addFav(event){
 //PINTAR FAVORITOS
 
 function renderFavourite(){
-    fav.innerHTML=''; //SIN ESO SE ACUMULAN Y EL SPLICE DE FAVOURITES NO FUNCIONA!!
+    fav.innerHTML=''; 
     for (let i=0; i<favourites.length; i++){
         fav.innerHTML+=` <li class="eachFav" series-id="${favourites[i].showID}">
                             <h2 class>${favourites[i].showTitle}</h2>
