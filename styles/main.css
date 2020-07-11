@@ -1,53 +1,79 @@
 
-body{
+.body{
     font-family: 'Courier New', Courier, monospace;
 }
 
 .title{
+    margin-top: 40px;
     text-align: center;
+}
+.input{
+    margin-right: 5px;
+}
+.submit{
+    margin-right: 5px; 
+    width: 63px;
+    height: 22.5px; 
+}
+.submit:hover{
+    background-color: lightblue;
+}
+.reset:hover{
+    background-color: lightblue;
+}
+.reset{
+    width: 62px;
+    height: 22.5px;
 }
 
 .search{
     margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     border-bottom: solid;
-    padding-bottom: 5px;
+    padding-bottom: 20px;
     width: 50%;
 }
+.sections-titles{
+    /* border: solid;  */
+    margin: 0 auto;
+    max-width: 1250px;
+    padding: 10px 25px 4px 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.sections-titles h2{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 200;
 
-.main{
-    margin-top: 10px;
+}
+.sections{
+    width:100%;
+    margin-top: 15px;
     display: flex;
     flex-direction: row-reverse;
 }
-
+/* SEARCH RESULTS STYLE */
 .searchResults{
     width: 70%;
-    border: solid;
-}
-
-.favResults{
-    width:30%;
-    border: solid;
-    height: 100vh;
-}
-
-.box{
+    border-top: solid;
+    border-left: solid;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: flex-start;
     flex-wrap: wrap;
-    height: 100vh;
-    width:100%;
-
-
+    padding: 44px;
 }
 
-li{
+.eachSeries{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -58,13 +84,43 @@ li{
     width: 150px;
     height: 250px;
    
-
 }
 
-h2{
+.eachSeries h2{
     font-size: 12px;
+    text-align: center;
+}
+/* FAVAOURITE RESULTS STYLE  */
+.favResults{
+    width:30%;
+    border-top: solid;
+    border-right: solid;
+    padding: 50px 10px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: initial;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.eachFav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid;
+    margin: 0px 20px 30px 20px;
+    background-color: cadetblue;
+    width: 80px;
+    height: 125px;
+
+}
+.eachFav h2{
+    font-size: 10px;
+    text-align: center;
 }
 
+/* GENERAL */
 .img_container{
     width:50%;
     height:50%;
