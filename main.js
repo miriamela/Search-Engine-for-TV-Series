@@ -141,7 +141,7 @@ function ListenerEliminate(){
     }
 }
 
-//
+// DELETE 
 
 function deleteFav(event){
     event.preventDefault();
@@ -151,10 +151,20 @@ function deleteFav(event){
     //no necesito el .find porque para sacarlo solamente (no pintarlo) solo se necesita su index
     let eliminatedSeriesIndex= favourites.findIndex( eachFav => eachFav.showID ===parseInt(chosenEliminateId));
 
-        favourites.splice(eliminatedSeriesIndex, 1);
-        renderFavourite();
-        localStorage.setItem('favourite-series', JSON.stringify(favourites));
+    favourites.splice(eliminatedSeriesIndex, 1);
+    renderFavourite();
+    localStorage.setItem('favourite-series', JSON.stringify(favourites));
+ 
+
     
+    //renderingSeries()
+    const showingSeries=box.querySelectorAll('series-id');
+
+    for (let i=0; i<showingSeries.length; i++){
+        if (showingSeries[i].show.id === parseInt(chosenEliminateId)) {
+            showingSeries.classList.remove('color')
+        }
+    }
     
 
 }
