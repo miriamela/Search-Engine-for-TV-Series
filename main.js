@@ -15,9 +15,6 @@ function renderFavBack() {
         favourites = JSON.parse(localStorage.getItem('favourite-series'))
         renderFavourite()
     }
-    // else{
-    //     favourites=[]
-    // }
 }
 renderFavBack()
 
@@ -27,7 +24,6 @@ function resetSearch(){
     box.innerHTML='';
     title.value='';
     series=[];
-    //renderingSeries();
 }
 
 reset.addEventListener('click', resetSearch);
@@ -93,8 +89,8 @@ function addListenerToResults(){
 function addFav(event){
     const chosenResults=event.currentTarget;
     const resultsId= chosenResults.getAttribute('series-id');
-    let selectedSeries = series.find(eachSeries => eachSeries.showID === parseInt(resultsId)); //voy a buscar el objeto 
-    let selectedSeriesIndex=  favourites.findIndex(eachSeries => eachSeries.showID  === parseInt(resultsId)); //voy a buscar el index del objeto de arriba (coinciden atravez del resultsId)
+    let selectedSeries = series.find(eachSeries => eachSeries.showID === parseInt(resultsId)); 
+    let selectedSeriesIndex=  favourites.findIndex(eachSeries => eachSeries.showID  === parseInt(resultsId));
 
         if (selectedSeriesIndex === -1){
             chosenResults.classList.add('color');
@@ -134,7 +130,7 @@ function renderFavourite(){
 
 function ListenerEliminate(){
     
-    const eliminateBtn=document.querySelectorAll('.js-eliminateBtn'); //this is the array of buttons
+    const eliminateBtn=document.querySelectorAll('.js-eliminateBtn'); 
 
     for(let i=0; i<eliminateBtn.length; i++){
         eliminateBtn[i].addEventListener('click', deleteFav)
@@ -146,28 +142,25 @@ function ListenerEliminate(){
 function deleteFav(event){
     event.preventDefault();
     const chosenEliminate= event.currentTarget;
-    const chosenEliminateId=chosenEliminate.getAttribute('series-id'); //este valor tiene que estar en el button también....
+    const chosenEliminateId=chosenEliminate.getAttribute('series-id'); 
     console.log(chosenEliminateId);
-    //no necesito el .find porque para sacarlo solamente (no pintarlo) solo se necesita su index
     let eliminatedSeriesIndex= favourites.findIndex( eachFav => eachFav.showID ===parseInt(chosenEliminateId));
 
     favourites.splice(eliminatedSeriesIndex, 1);
     renderFavourite();
     localStorage.setItem('favourite-series', JSON.stringify(favourites));
-     
-    //renderingSeries()
     changeColorSeries(chosenEliminateId)
 }
 
 //PAINT THE OBJECT WITH THE ORIGINAL COLOUR 
 
 function changeColorSeries(chosenEliminateId){
-    const showingSeries=box.querySelectorAll('li'); //form un array con los li que tengo en series
+    const showingSeries=box.querySelectorAll('li'); 
 
-    for (let i=0; i<showingSeries.length; i++){ //recorro el array para sacarle el valor dentro del artibuto ID
+    for (let i=0; i<showingSeries.length; i++){ 
         let showingSeriesID= showingSeries[i].getAttribute('series-id');
-        if (parseInt(showingSeriesID) === parseInt(chosenEliminateId)) { //el valor de los atributos con el valor de los atributos eliminados de favoritos 
-            showingSeries[i].classList.remove('color') // a los que tiene el mismo valor le saco el color.
+        if (parseInt(showingSeriesID) === parseInt(chosenEliminateId)) { 
+            showingSeries[i].classList.remove('color') 
         }
     }
 }
