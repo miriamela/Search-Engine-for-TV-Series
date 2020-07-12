@@ -7,18 +7,17 @@ const fav=document.querySelector('.js-favResults');
 const reset=document.querySelector('.js-reset');
 let series=[];
 let favourites=[];
-//let eliminate=[];
 
-//LOCAL STORAGE AL ARRANCAR
+//LOCAL STORAGE acttion when loading page
 
 function renderFavBack() {
     if(localStorage.getItem('favourite-series') !== null){
         favourites = JSON.parse(localStorage.getItem('favourite-series'))
         renderFavourite()
     }
-    else{
-        favourites=[]
-    }
+    // else{
+    //     favourites=[]
+    // }
 }
 renderFavBack()
 
@@ -33,7 +32,7 @@ function resetSearch(){
 
 reset.addEventListener('click', resetSearch);
 
-//BUSCAR LAS SERIES
+//SEARCHING SERIES
 function searchSeries(ev){
     series=[]; 
     ev.preventDefault();
@@ -52,7 +51,7 @@ function searchSeries(ev){
 searchBtn.addEventListener('click', searchSeries);
 
 
-//PINTAR LAS SERIES
+//DISPLAY SERIES
 
 function renderingSeries(){  
     box.innerHTML=''; 
@@ -68,7 +67,7 @@ function renderingSeries(){
     addListenerToResults();
 }
 
-//si no hay imagen
+//IF THERE IS NO IMAGE
 
 function replaceImg(show){
     if(show.image !== null){
@@ -80,7 +79,7 @@ function replaceImg(show){
 
 }
 
-//ESCUCHAR SERIES ENCONTRADAS
+//LISTENING TO SERIES
 
 function addListenerToResults(){
     const results= document.querySelectorAll('.js-eachSeries');
@@ -90,7 +89,7 @@ function addListenerToResults(){
         }
 }
 
-//AÑADIR SERIES ENCONTRADAS EN FAVORITOS
+//ADD SERIES TO FAVOURITES 
 function addFav(event){
     const chosenResults=event.currentTarget;
     const resultsId= chosenResults.getAttribute('series-id');
@@ -113,7 +112,7 @@ function addFav(event){
 }
 
 
-//PINTAR FAVORITOS
+//DISPLAY FAVOURITES 
 
 function renderFavourite(){
     fav.innerHTML=''; 
@@ -131,6 +130,8 @@ function renderFavourite(){
 
 }
 
+ // LISTENING TO ELIMINATE FAVOURITE BTN
+
 function ListenerEliminate(){
     
     const eliminateBtn=document.querySelectorAll('.js-eliminateBtn');
@@ -139,6 +140,9 @@ function ListenerEliminate(){
         eliminateBtn[i].addEventListener('click', deleteFav)
     }
 }
+
+//
+
 function deleteFav(event){
     event.preventDefault();
     const chosenEliminate= event.currentTarget;
