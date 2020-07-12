@@ -4,8 +4,10 @@
 }
 
 .title{
+    font-size: 40px;
     margin-top: 40px;
     text-align: center;
+    color: #e22200;
 }
 .input{
     margin-right: 5px;
@@ -16,10 +18,12 @@
     height: 22.5px; 
 }
 .submit:hover{
-    background-color: lightblue;
+    background-color: black;
+    color: white;
 }
 .reset:hover{
-    background-color: lightblue;
+    background-color: black;
+    color: white;
 }
 .reset{
     width: 62px;
@@ -80,7 +84,7 @@
     align-items: center;
     border: solid;
     margin: 5px;
-    background-color: cadetblue;
+    background-color: #E2AE00;
     width: 150px;
     height: 250px;
    
@@ -119,6 +123,10 @@
     font-size: 10px;
     text-align: center;
 }
+.eliminateBtn:hover{
+    background-color: black;
+    color: white;
+}
 
 /* GENERAL */
 .img_container{
@@ -133,5 +141,5 @@ object-fit: fill;
 }
 
 .color{
-    background-color: #a06f5f;
+    background-color: #5f9ea0;
 }

@@ -7,7 +7,7 @@ const fav=document.querySelector('.js-favResults');
 const reset=document.querySelector('.js-reset');
 let series=[];
 let favourites=[];
-let eliminate=[];
+//let eliminate=[];
 
 //LOCAL STORAGE AL ARRANCAR
 
@@ -123,7 +123,7 @@ function renderFavourite(){
                             <div class="img_container">
                                 <img src="${favourites[i].showImageURL}">
                             </div>
-                            <button class="js-eliminateBtn" series-id="${favourites[i].showID}" type="reset">Eliminate</button>
+                            <button class="js-eliminateBtn eliminateBtn" series-id="${favourites[i].showID}" type="reset">Eliminate</button>
                          </li>`
     }
     
