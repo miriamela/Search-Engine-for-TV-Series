@@ -8,7 +8,7 @@ const reset=document.querySelector('.js-reset');
 let series=[];
 let favourites=[];
 
-//LOCAL STORAGE acttion when loading page
+//LOCAL STORAGE action when loading page
 
 function renderFavBack() {
     if(localStorage.getItem('favourite-series') !== null){
@@ -101,11 +101,11 @@ function addFav(event){
             favourites.push(selectedSeries);
 
         }
-        else{
-            chosenResults.classList.remove('color');
-            favourites.splice(selectedSeriesIndex, 1);
+        // else{
+        //     chosenResults.classList.remove('color');
+        //     favourites.splice(selectedSeriesIndex, 1);
 
-        }
+        // }
     
     renderFavourite()
     localStorage.setItem('favourite-series', JSON.stringify(favourites))
@@ -134,7 +134,7 @@ function renderFavourite(){
 
 function ListenerEliminate(){
     
-    const eliminateBtn=document.querySelectorAll('.js-eliminateBtn');
+    const eliminateBtn=document.querySelectorAll('.js-eliminateBtn'); //this is the array of buttons
 
     for(let i=0; i<eliminateBtn.length; i++){
         eliminateBtn[i].addEventListener('click', deleteFav)
@@ -154,17 +154,20 @@ function deleteFav(event){
     favourites.splice(eliminatedSeriesIndex, 1);
     renderFavourite();
     localStorage.setItem('favourite-series', JSON.stringify(favourites));
- 
-
-    
+     
     //renderingSeries()
-    const showingSeries=box.querySelectorAll('series-id');
+    changeColorSeries(chosenEliminateId)
+}
 
-    for (let i=0; i<showingSeries.length; i++){
-        if (showingSeries[i].show.id === parseInt(chosenEliminateId)) {
-            showingSeries.classList.remove('color')
+//PAINT THE OBJECT WITH THE ORIGINAL COLOUR 
+
+function changeColorSeries(chosenEliminateId){
+    const showingSeries=box.querySelectorAll('li'); //form un array con los li que tengo en series
+
+    for (let i=0; i<showingSeries.length; i++){ //recorro el array para sacarle el valor dentro del artibuto ID
+        let showingSeriesID= showingSeries[i].getAttribute('series-id');
+        if (parseInt(showingSeriesID) === parseInt(chosenEliminateId)) { //el valor de los atributos con el valor de los atributos eliminados de favoritos 
+            showingSeries[i].classList.remove('color') // a los que tiene el mismo valor le saco el color.
         }
     }
-    
-
 }
