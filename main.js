@@ -8,21 +8,20 @@ const reset=document.querySelector('.js-reset');
 //const favTitle=document.querySelector('.js-favTitle');
 let series=[];
 let favourites=[];
-//let eliminate=[];
 
-//LOCAL STORAGE AL ARRANCAR
+//LOCAL STORAGE action when loading page
 
 function renderFavBack() {
     if(localStorage.getItem('favourite-series') !== null){
         favourites = JSON.parse(localStorage.getItem('favourite-series'))
-        renderFavourite();
-        //favTitle.classList.remove('hidden')
-    }else{
-        favourites=[];
-        //favTitle.classList.remove('hidden');
+        renderFavourite()
     }
+    // else{
+    //     favourites=[]
+    // }
 }
-renderFavBack();
+renderFavBack()
+
 //RESET SEARCH RESULTS
 
 function resetSearch(){
@@ -34,9 +33,9 @@ function resetSearch(){
 
 reset.addEventListener('click', resetSearch);
 
-//BUSCAR LAS SERIES
+//SEARCHING SERIES
 function searchSeries(ev){
-    series=[]; //hay que limpiar el array o se acumulan objetos a cada serach if you don't reload the page
+    series=[]; 
     ev.preventDefault();
     fetch(`http://api.tvmaze.com/search/shows?q=${title.value}`)
         .then(response => response.json())
@@ -52,39 +51,12 @@ function searchSeries(ev){
 }
 searchBtn.addEventListener('click', searchSeries);
 
-// series
-//             .showID     .showTitle     .showImageURL
-//       [0]     2938        Dark           pepino.png
-//       [1]     123         Dark tables    fksdj.jpg
-//       [2]     555         Dexter         dexter.jpg
 
-
-// eachSeries.showID === parseInt(resultsId)
-
-
-// favourites
-//                  .showID     .showTitle    .showImageURL
-//           [0]      2938         Dark         pepino.png
-
-// let favourtiesindex= favourites.findIndex(EachfavID => EachfavID.showID === series[i].showID);
-// if(favourtiesindex === -1){
-//     console.log("no està")
-// }
-
-
-//PINTAR LAS SERIES
+//DISPLAY SERIES
 
 function renderingSeries(){  
-    box.innerHTML=''; // eso no funcionaría sin la limpieza del array, a cada search iria acumulando y seguiria pintado el acumulo de todos los searches.
+    box.innerHTML=''; 
     for (let i=0; i<series.length; i++){
-        // const favouriteIndex = favourites.findIndex( eachFav => eachFav.showID === series[i].showID);
-        // if( favouriteIndex >= 0 ) {
-        //     //Está en fav
-        // }
-        // else
-        // {
-        //     // No está en fav
-        // }
         let favourtiesindex= favourites.findIndex(EachfavID => EachfavID.showID === series[i].showID);
                 if(favourtiesindex >=0){    //ESTE FUNCIONA
                     box.innerHTML+= `<li class="js-eachSeries eachSeries color" series-id="${series[i].showID}">
@@ -102,32 +74,18 @@ function renderingSeries(){
                                         </div>
                                     </li>`
                         }
- //este arriba se puede hace con el ternario, intentarlo!!!
-                    //ESTE NO FUNCIONA
-                        // if(favourtiesindex === -1){
-                        //         box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
-                        //                             <h2>${series[i].showTitle}</h2>
-                        //                             <div class="img_container">
-                        //                                 <img src="${series[i].showImageURL}">
-                        //                             </div>
-                        //                         </li>`
-                        // }else{
-                        //         const eachSeriesPositive=document.querySelector('.js-eachSeries');
-                        //         eachSeriesPositive.classList.add('color');
-                        // }
-
-                        //VIEJO RENDER
-        // box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
-        //                         <h2>${series[i].showTitle}</h2>
-        //                         <div class="img_container">
-        //                             <img src="${series[i].showImageURL}">
-        //                         </div>
-        //                     </li>`
-    }
+        
+    //     box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
+    //                             <h2>${series[i].showTitle}</h2>
+    //                             <div class="img_container">
+    //                                 <img src="${series[i].showImageURL}">
+    //                             </div>
+    //                         </li>`
+     }
     addListenerToResults();
 }
 
-//si no hay imagen
+//IF THERE IS NO IMAGE
 
 function replaceImg(show){
     if(show.image !== null){
@@ -139,7 +97,7 @@ function replaceImg(show){
 
 }
 
-//ESCUCHAR SERIES ENCONTRADAS
+//LISTENING TO SERIES
 
 function addListenerToResults(){
     const results= document.querySelectorAll('.js-eachSeries');
@@ -149,8 +107,7 @@ function addListenerToResults(){
         }
 }
 
-
-//AÑADIR SERIES ENCONTRADAS EN FAVORITOS
+//ADD SERIES TO FAVOURITES 
 function addFav(event){
     const chosenResults=event.currentTarget;
     const resultsId= chosenResults.getAttribute('series-id');
@@ -166,26 +123,24 @@ function addFav(event){
             chosenResults.classList.remove('color');
             favourites.splice(selectedSeriesIndex, 1);
 
-
         }
-    // }
+    
     renderFavourite()
     localStorage.setItem('favourite-series', JSON.stringify(favourites))
 }
 
 
-//PINTAR FAVORITOS
+//DISPLAY FAVOURITES 
 
 function renderFavourite(){
     fav.innerHTML=''; 
-    //favTitle.classList.remove('hidden');//SIN ESO SE ACUMULAN Y EL SPLICE DE FAVOURITES NO FUNCIONA!!
     for (let i=0; i<favourites.length; i++){
         fav.innerHTML+=` <li class="eachFav" series-id="${favourites[i].showID}">
                             <h2 class>${favourites[i].showTitle}</h2>
                             <div class="img_container">
                                 <img src="${favourites[i].showImageURL}">
                             </div>
-                            <button class="js-eliminateBtn" series-id="${favourites[i].showID}" type="reset">Eliminate</button>
+                            <button class="js-eliminateBtn eliminateBtn" series-id="${favourites[i].showID}" type="reset">Eliminate</button>
                          </li>`
     }
     
@@ -193,14 +148,19 @@ function renderFavourite(){
 
 }
 
+ // LISTENING TO ELIMINATE FAVOURITE BTN
+
 function ListenerEliminate(){
     
-    const eliminateBtn=document.querySelectorAll('.js-eliminateBtn');
+    const eliminateBtn=document.querySelectorAll('.js-eliminateBtn'); //this is the array of buttons
 
     for(let i=0; i<eliminateBtn.length; i++){
         eliminateBtn[i].addEventListener('click', deleteFav)
     }
 }
+
+// DELETE 
+
 function deleteFav(event){
     event.preventDefault();
     //favTitle.classList.add('hidden');
@@ -215,17 +175,23 @@ function deleteFav(event){
     //reloadOriginalColor(chosenEliminateId)
     renderingSeries()
 
-    //eliminatedSeriesIndex
-    
-    //series.findIndex( eachSeries => eachSeries.showID === )
+    favourites.splice(eliminatedSeriesIndex, 1);
+    renderFavourite();
+    localStorage.setItem('favourite-series', JSON.stringify(favourites));
+     
+    renderingSeries() //ESTO FUNCIONA 
+    // changeColorSeries(chosenEliminateId)
 }
 
-// function reloadOriginalColor(chosenEliminateId){
-//     const displayedSeries=box.querySelectorAll('li') //gancho 1 pata coger los li
-//     for (let i=0; i<displayedSeries.length; i++){  //recorro los LI
-//         let seriesID=displayedSeries[i].getAttribute('series-id') //de los li que recorro me quedo con el series id
-//         if (parseInt(seriesID) === parseInt(chosenEliminateId)){
-//             displayedSeries[i].classList.remove('color'); //eso ya se ha vuelto un cumulo de elementos de HTML y puedo añadirle clase
+//PAINT THE OBJECT WITH THE ORIGINAL COLOUR 
+
+// function changeColorSeries(chosenEliminateId) {
+//     const showingSeries=box.querySelectorAll('li'); //form un array con los li que tengo en series
+
+//     for (let i=0; i<showingSeries.length; i++){ //recorro el array para sacarle el valor dentro del artibuto ID
+//         let showingSeriesID= showingSeries[i].getAttribute('series-id');
+//         if (parseInt(showingSeriesID) === parseInt(chosenEliminateId)) { //el valor de los atributos con el valor de los atributos eliminados de favoritos 
+//             showingSeries[i].classList.remove('color') // a los que tiene el mismo valor le saco el color.
 //         }
 //     }
 // }
