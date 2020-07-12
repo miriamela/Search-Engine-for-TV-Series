@@ -58,8 +58,6 @@ function renderingSeries(){
     box.innerHTML=''; 
     for (let i=0; i<series.length; i++){
         
-        //if( series[i].show.id )
-        
         box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
                                 <h2>${series[i].showTitle}</h2>
                                 <div class="img_container">
