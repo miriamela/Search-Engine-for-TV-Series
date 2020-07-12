@@ -58,7 +58,7 @@ function renderingSeries(){
     box.innerHTML=''; 
     for (let i=0; i<series.length; i++){
         let favourtiesindex= favourites.findIndex(EachfavID => EachfavID.showID === series[i].showID);
-                if(favourtiesindex >=0){    //ESTE FUNCIONA
+                if(favourtiesindex >=0){    //ESTE FUNCIONA PERO NO ESTÁ EN LA MASTER
                     box.innerHTML+= `<li class="js-eachSeries eachSeries color" series-id="${series[i].showID}">
                                         <h2>${series[i].showTitle}</h2>
                                         <div class="img_container">
@@ -179,7 +179,7 @@ function deleteFav(event){
     renderFavourite();
     localStorage.setItem('favourite-series', JSON.stringify(favourites));
      
-    renderingSeries() //ESTO FUNCIONA 
+    renderingSeries() //ESTO FUNCIONA NO ESTÀ EN LA MASTER
     // changeColorSeries(chosenEliminateId)
 }
 
