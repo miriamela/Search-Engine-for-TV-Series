@@ -5,6 +5,7 @@ const searchBtn=document.querySelector ('.js-submit');
 const box=document.querySelector ('.js-searchResults');
 const fav=document.querySelector('.js-favResults');
 const reset=document.querySelector('.js-reset');
+const favTitle=document.querySelector('.js-favTitle');
 let series=[];
 let favourites=[];
 let eliminate=[];
@@ -15,9 +16,11 @@ function renderFavBack() {
     if(localStorage.getItem('favourite-series') !== null){
         favourites = JSON.parse(localStorage.getItem('favourite-series'))
         renderFavourite()
+        favTitle.classList.remove('hidden')
     }
     else{
         favourites=[]
+        favTitle.classList.add('hidden')
     }
 
 }
@@ -65,6 +68,10 @@ searchBtn.addEventListener('click', searchSeries);
 //                  .showID     .showTitle    .showImageURL
 //           [0]      2938         Dark         pepino.png
 
+// let favourtiesindex= favourites.findIndex(EachfavID => EachfavID.showID === series[i].showID);
+// if(favourtiesindex === -1){
+//     console.log("no està")
+// }
 
 
 //PINTAR LAS SERIES
@@ -80,12 +87,44 @@ function renderingSeries(){
         // {
         //     // No está en fav
         // }
-        box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
-                                <h2>${series[i].showTitle}</h2>
-                                <div class="img_container">
-                                    <img src="${series[i].showImageURL}">
-                                </div>
-                            </li>`
+        let favourtiesindex= favourites.findIndex(EachfavID => EachfavID.showID === series[i].showID);
+                if(favourtiesindex >=0){    //ESTE FUNCIONA
+                    box.innerHTML+= `<li class="js-eachSeries eachSeries color" series-id="${series[i].showID}">
+                                        <h2>${series[i].showTitle}</h2>
+                                        <div class="img_container">
+                                            <img src="${series[i].showImageURL}">
+                                        </div>
+                                    </li>`
+                }
+                else{
+                    box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
+                                        <h2>${series[i].showTitle}</h2>
+                                        <div class="img_container">
+                                            <img src="${series[i].showImageURL}">
+                                        </div>
+                                    </li>`
+                        }
+
+                    //ESTE NO FUNCIONA
+                        // if(favourtiesindex === -1){
+                        //         box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
+                        //                             <h2>${series[i].showTitle}</h2>
+                        //                             <div class="img_container">
+                        //                                 <img src="${series[i].showImageURL}">
+                        //                             </div>
+                        //                         </li>`
+                        // }else{
+                        //         const eachSeriesPositive=document.querySelector('.js-eachSeries');
+                        //         eachSeriesPositive.classList.add('color');
+                        // }
+
+                        //VIEJO RENDER
+        // box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
+        //                         <h2>${series[i].showTitle}</h2>
+        //                         <div class="img_container">
+        //                             <img src="${series[i].showImageURL}">
+        //                         </div>
+        //                     </li>`
     }
     addListenerToResults();
 }

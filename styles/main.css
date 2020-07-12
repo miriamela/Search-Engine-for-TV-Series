@@ -140,3 +140,7 @@ object-fit: fill;
 .color{
     background-color: cadetblue;
 }
+
+.hidden{
+    visibility: hidden;
+}
