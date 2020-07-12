@@ -5,26 +5,24 @@ const searchBtn=document.querySelector ('.js-submit');
 const box=document.querySelector ('.js-searchResults');
 const fav=document.querySelector('.js-favResults');
 const reset=document.querySelector('.js-reset');
-const favTitle=document.querySelector('.js-favTitle');
+//const favTitle=document.querySelector('.js-favTitle');
 let series=[];
 let favourites=[];
-let eliminate=[];
+//let eliminate=[];
 
 //LOCAL STORAGE AL ARRANCAR
 
 function renderFavBack() {
     if(localStorage.getItem('favourite-series') !== null){
         favourites = JSON.parse(localStorage.getItem('favourite-series'))
-        renderFavourite()
-        favTitle.classList.remove('hidden')
+        renderFavourite();
+        //favTitle.classList.remove('hidden')
+    }else{
+        favourites=[];
+        //favTitle.classList.remove('hidden');
     }
-    else{
-        favourites=[]
-        favTitle.classList.add('hidden')
-    }
-
 }
-renderFavBack()
+renderFavBack();
 //RESET SEARCH RESULTS
 
 function resetSearch(){
@@ -151,6 +149,7 @@ function addListenerToResults(){
         }
 }
 
+
 //AÑADIR SERIES ENCONTRADAS EN FAVORITOS
 function addFav(event){
     const chosenResults=event.currentTarget;
@@ -167,6 +166,7 @@ function addFav(event){
             chosenResults.classList.remove('color');
             favourites.splice(selectedSeriesIndex, 1);
 
+
         }
     // }
     renderFavourite()
@@ -177,7 +177,8 @@ function addFav(event){
 //PINTAR FAVORITOS
 
 function renderFavourite(){
-    fav.innerHTML=''; //SIN ESO SE ACUMULAN Y EL SPLICE DE FAVOURITES NO FUNCIONA!!
+    fav.innerHTML=''; 
+    //favTitle.classList.remove('hidden');//SIN ESO SE ACUMULAN Y EL SPLICE DE FAVOURITES NO FUNCIONA!!
     for (let i=0; i<favourites.length; i++){
         fav.innerHTML+=` <li class="eachFav" series-id="${favourites[i].showID}">
                             <h2 class>${favourites[i].showTitle}</h2>
@@ -202,16 +203,36 @@ function ListenerEliminate(){
 }
 function deleteFav(event){
     event.preventDefault();
+    //favTitle.classList.add('hidden');
     const chosenEliminate= event.currentTarget;
     const chosenEliminateId=chosenEliminate.getAttribute('series-id'); //este valor tiene que estar en el button también....
     console.log(chosenEliminateId);
     //no necesito el .find porque para sacarlo solamente (no pintarlo) solo se necesita su index
     let eliminatedSeriesIndex= favourites.findIndex( eachFav => eachFav.showID ===parseInt(chosenEliminateId));
+    favourites.splice(eliminatedSeriesIndex, 1);
+    renderFavourite();
+    localStorage.setItem('favourite-series', JSON.stringify(favourites));
+    
+        //NOT WORKING
+        //const seriesid=series.getAttribute('series-id');
+        let seriesidIndex=series.findIndex(eachseries => eachseries.showID === eliminatedSeriesIndex)
+        if (seriesidIndex>=0){
+            renderingSeries()
+        }
+    
 
-        favourites.splice(eliminatedSeriesIndex, 1);
-        renderFavourite();
-        localStorage.setItem('favourite-series', JSON.stringify(favourites));
+    //let seriesindex= series.findIndex(EachSeriesID => EachSeriesID.showID === favourites.showID)
     
-    
+        // for( let i=0; i<series.length; i++){
+        //     let seriesindex= series.findIndex(EachSeriesID => EachSeriesID.showID === favourites.showID)
+        //     if (seriesindex === -1 ){
+        // box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
+        //                                 <h2>${series[i].showTitle}</h2>
+        //                                 <div class="img_container">
+        //                                     <img src="${series[i].showImageURL}">
+        //                                 </div>
+        //                             </li>`
+        //     }
+        // }
 
 }

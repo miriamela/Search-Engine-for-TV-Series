@@ -58,6 +58,8 @@
     font-weight: 200;
 
 }
+
+
 .sections{
     width:100%;
     margin-top: 15px;
@@ -133,8 +135,8 @@
 }
 
 img{
-width: 100%;
-object-fit: fill;
+    width: 100%;
+    object-fit: fill;
 }
 
 .color{
