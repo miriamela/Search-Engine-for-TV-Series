@@ -102,7 +102,7 @@ function renderingSeries(){
                                         </div>
                                     </li>`
                         }
-
+ //este arriba se puede hace con el ternario, intentarlo!!!
                     //ESTE NO FUNCIONA
                         // if(favourtiesindex === -1){
                         //         box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
@@ -212,27 +212,20 @@ function deleteFav(event){
     favourites.splice(eliminatedSeriesIndex, 1);
     renderFavourite();
     localStorage.setItem('favourite-series', JSON.stringify(favourites));
-    
-        //NOT WORKING
-        //const seriesid=series.getAttribute('series-id');
-        let seriesidIndex=series.findIndex(eachseries => eachseries.showID === eliminatedSeriesIndex)
-        if (seriesidIndex>=0){
-            renderingSeries()
-        }
-    
+    //reloadOriginalColor(chosenEliminateId)
+    renderingSeries()
 
-    //let seriesindex= series.findIndex(EachSeriesID => EachSeriesID.showID === favourites.showID)
+    //eliminatedSeriesIndex
     
-        // for( let i=0; i<series.length; i++){
-        //     let seriesindex= series.findIndex(EachSeriesID => EachSeriesID.showID === favourites.showID)
-        //     if (seriesindex === -1 ){
-        // box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
-        //                                 <h2>${series[i].showTitle}</h2>
-        //                                 <div class="img_container">
-        //                                     <img src="${series[i].showImageURL}">
-        //                                 </div>
-        //                             </li>`
-        //     }
-        // }
-
+    //series.findIndex( eachSeries => eachSeries.showID === )
 }
+
+// function reloadOriginalColor(chosenEliminateId){
+//     const displayedSeries=box.querySelectorAll('li') //gancho 1 pata coger los li
+//     for (let i=0; i<displayedSeries.length; i++){  //recorro los LI
+//         let seriesID=displayedSeries[i].getAttribute('series-id') //de los li que recorro me quedo con el series id
+//         if (parseInt(seriesID) === parseInt(chosenEliminateId)){
+//             displayedSeries[i].classList.remove('color'); //eso ya se ha vuelto un cumulo de elementos de HTML y puedo añadirle clase
+//         }
+//     }
+// }

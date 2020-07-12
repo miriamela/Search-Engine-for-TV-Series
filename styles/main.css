@@ -117,7 +117,7 @@
     align-items: center;
     border: solid;
     margin: 0px 20px 30px 20px;
-    background-color: #5f9ea0;
+    background-color: #609d9f;
     width: 80px;
     height: 125px;
 
@@ -140,7 +140,7 @@ img{
 }
 
 .color{
-    background-color: cadetblue;
+    background-color: #609d9f;
 }
 
 .hidden{
