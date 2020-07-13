@@ -2,7 +2,6 @@
 
 Este buscador permite encontrar series usando tanto el título completo como parte del mismo, y devuelve todos los titulos encontrados que concidan completamente o parcialmente con el término introducido en el campo de busqueda. También es posible guardar series en una lista de favortitos para poder consultarlas en otro momento.
 
-
 ## BUSCADOR DE SERIES
 
 Una vez introducido el título en el campo indicado, y hecho click en el botón *Search*, aparecerán en la parte derecha de la pantalla los resultados completos con el título y el poster oficial de la serie.
