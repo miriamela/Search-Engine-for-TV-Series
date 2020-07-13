@@ -85,12 +85,12 @@ function addListenerToResults(){
         }
 }
 
-//ADD SERIES TO FAVOURITES 
+//ADD SERIES TO FAVOURITES
 function addFav(event){
     const chosenResults=event.currentTarget;
     const resultsId= chosenResults.getAttribute('series-id');
-    let selectedSeries = series.find(eachSeries => eachSeries.showID === parseInt(resultsId)); 
-    let selectedSeriesIndex=  favourites.findIndex(eachSeries => eachSeries.showID  === parseInt(resultsId));
+    let selectedSeries = series.find(eachSeries => eachSeries.showID === parseInt(resultsId)); //recorreme el array series y recogeme los objetos (eachseries) que tengan el campo.showID populated with the number coming from the get attribute.
+    let selectedSeriesIndex = favourites.findIndex(eachSeries => eachSeries.showID  === parseInt(resultsId));
 
         if (selectedSeriesIndex === -1){
             chosenResults.classList.add('color');
@@ -137,13 +137,13 @@ function ListenerEliminate(){
     }
 }
 
-// DELETE 
+// DELETE FAVOURITES WITH ELIMINATE BUTTON
 
 function deleteFav(event){
     event.preventDefault();
     const chosenEliminate= event.currentTarget;
     const chosenEliminateId=chosenEliminate.getAttribute('series-id'); 
-    console.log(chosenEliminateId);
+    //console.log(chosenEliminateId);
     let eliminatedSeriesIndex= favourites.findIndex( eachFav => eachFav.showID ===parseInt(chosenEliminateId));
 
     favourites.splice(eliminatedSeriesIndex, 1);
