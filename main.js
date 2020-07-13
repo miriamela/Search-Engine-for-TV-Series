@@ -52,13 +52,23 @@ searchBtn.addEventListener('click', searchSeries);
 function renderingSeries(){  
     box.innerHTML=''; 
     for (let i=0; i<series.length; i++){
-        
-        box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
-                                <h2>${series[i].showTitle}</h2>
-                                <div class="img_container">
-                                    <img src="${series[i].showImageURL}">
-                                </div>
-                            </li>`
+        let favourtiesindex= favourites.findIndex(EachfavID => EachfavID.showID === series[i].showID);
+            if(favourtiesindex >=0){ 
+                box.innerHTML+= `<li class="js-eachSeries eachSeries color" series-id="${series[i].showID}">
+                                    <h2>${series[i].showTitle}</h2>
+                                    <div class="img_container">
+                                        <img src="${series[i].showImageURL}">
+                                    </div>
+                                </li>`
+            }
+            else{
+                box.innerHTML+= `<li class="js-eachSeries eachSeries" series-id="${series[i].showID}">
+                                    <h2>${series[i].showTitle}</h2>
+                                    <div class="img_container">
+                                        <img src="${series[i].showImageURL}">
+                                    </div>
+                                </li>`
+                    }
     }
     addListenerToResults();
 }
@@ -142,18 +152,6 @@ function deleteFav(event){
     favourites.splice(eliminatedSeriesIndex, 1);
     renderFavourite();
     localStorage.setItem('favourite-series', JSON.stringify(favourites));
-    changeColorSeries(chosenEliminateId)
+    renderingSeries() // PAINT BACK THE ORIGINAL COLOURS
 }
 
-//PAINT THE OBJECT WITH THE ORIGINAL COLOUR 
-
-function changeColorSeries(chosenEliminateId){
-    const showingSeries=box.querySelectorAll('li'); 
-
-    for (let i=0; i<showingSeries.length; i++){ 
-        let showingSeriesID= showingSeries[i].getAttribute('series-id');
-        if (parseInt(showingSeriesID) === parseInt(chosenEliminateId)) { 
-            showingSeries[i].classList.remove('color') 
-        }
-    }
-}
