@@ -107,6 +107,10 @@ function addFav(event){
             favourites.push(selectedSeries);
 
         }
+        else{
+            chosenResults.classList.remove('color');
+            favourites.splice(selectedSeriesIndex, 1);
+        }
     
     renderFavourite()
     localStorage.setItem('favourite-series', JSON.stringify(favourites))
