@@ -116,7 +116,6 @@ function renderFavourite(){
                             <button class="js-eliminateBtn eliminateBtn" series-id="${favourites[i].showID}" type="reset">Eliminate</button>
                          </li>`
     }
-    
     ListenerEliminate()
 
 }
