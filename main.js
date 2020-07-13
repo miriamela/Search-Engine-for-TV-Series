@@ -173,14 +173,8 @@ function deleteFav(event){
     favourites.splice(eliminatedSeriesIndex, 1);
     renderFavourite();
     localStorage.setItem('favourite-series', JSON.stringify(favourites));
-    //reloadOriginalColor(chosenEliminateId)
     renderingSeries()
 
-    favourites.splice(eliminatedSeriesIndex, 1);
-    renderFavourite();
-    localStorage.setItem('favourite-series', JSON.stringify(favourites));
-     
-    renderingSeries()
     // changeColorSeries(chosenEliminateId)
 }
 
