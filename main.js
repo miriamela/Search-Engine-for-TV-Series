@@ -112,6 +112,7 @@ function addFav(event){
     const chosenResults=event.currentTarget;
     const resultsId= chosenResults.getAttribute('series-id');
     let selectedSeries = series.find(eachSeries => eachSeries.showID === parseInt(resultsId)); //voy a buscar el objeto 
+    //recorreme el array series y recogeme los objetos (eachseries) que tengan el campo.showID populated with the number coming from the get attribute.
     let selectedSeriesIndex=  favourites.findIndex(eachSeries => eachSeries.showID  === parseInt(resultsId)); //voy a buscar el index del objeto de arriba (coinciden atravez del resultsId)
 
         if (selectedSeriesIndex === -1){
