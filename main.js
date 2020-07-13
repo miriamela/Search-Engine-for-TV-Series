@@ -97,11 +97,6 @@ function addFav(event){
             favourites.push(selectedSeries);
 
         }
-        // else{
-        //     chosenResults.classList.remove('color');
-        //     favourites.splice(selectedSeriesIndex, 1);
-
-        // }
     
     renderFavourite()
     localStorage.setItem('favourite-series', JSON.stringify(favourites))
@@ -143,7 +138,6 @@ function deleteFav(event){
     event.preventDefault();
     const chosenEliminate= event.currentTarget;
     const chosenEliminateId=chosenEliminate.getAttribute('series-id'); 
-    //console.log(chosenEliminateId);
     let eliminatedSeriesIndex= favourites.findIndex( eachFav => eachFav.showID ===parseInt(chosenEliminateId));
 
     favourites.splice(eliminatedSeriesIndex, 1);
