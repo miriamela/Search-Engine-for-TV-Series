@@ -12,4 +12,4 @@ Para limpiar los resultados de la búsqueda se puede usar el botón de *Reset* o
 
 Haciendo click en una serie concreta de la lista se puede salvar la misma en la sección de favoritos, en la parte izquierda de la pantalla. Con un segundo click se puede sacar la serie de la lista de favoritos. Una vez selecionada una serie, el fondo del bloque cambia de color para poder identificar mejor lo que se ha selecionado en favoritos.
 
-Una vez salvadas las series en favoritos, éstas aparecerán automáticamente al cargar de nuevo la página. Para eliminarlas es suficiente hacer click en el botón *Eliminate* en de cada serie. Una vez eliminada la serie, desaparecerá de la lista de favoritos y no aparecerá de nuevo cuando se cargue la página en el futuro.
+Una vez salvadas las series en favoritos, éstas aparecerán automáticamente al cargar de nuevo la página. Para eliminarlas es suficiente hacer click en el botón *Eliminate* en de cada serie. Una vez eliminada la serie, desaparecerá de la lista de favoritos y no aparecerá de nuevo cuando se cargue la página en el futuro. 
