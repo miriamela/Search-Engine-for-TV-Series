@@ -2,7 +2,8 @@
   font-family: "Courier New", Courier, monospace;
   background-image: url("../FAVPNG_line-science-and-technology-red_ygF2CWV5.png");
   background-position: center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
+  background-size: 6900px 3500px;
 }
 
 .title {
@@ -47,13 +48,17 @@
 .sections-titles {
   margin: 0 auto;
   max-width: 1250px;
-  padding: 10px 25px 4px 25px;
+  padding: 10px 25px 4px 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 .sections-titles h2 {
+  background-color: black;
+  line-height: 20px;
+  letter-spacing: 1px;
+  color: white;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 200;
